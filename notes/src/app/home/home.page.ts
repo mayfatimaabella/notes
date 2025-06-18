@@ -10,6 +10,7 @@ import { MenuController } from '@ionic/angular';
 export class HomePage {
   searchText = '';
   isGrid = true;
+  selectedItem: string = 'notes';
 
   constructor(private menu: MenuController) {}
 
@@ -22,7 +23,7 @@ export class HomePage {
   }
 
   onSearchInput() {
-    console.log('Search text:', this.searchText);
+    
   }
 
   onGridClick() {
@@ -31,5 +32,9 @@ export class HomePage {
 
   onAvatarClick() {
 
+  }
+
+  selectItem(item:string){
+    this.selectedItem = item;
   }
 }
