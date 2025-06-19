@@ -50,35 +50,54 @@
       </ion-item>
 
       <ion-item button detail="false" 
-      lines="none" class="keep-item">
+      lines="none" class="keep-item"
+      [ngClass]="{ 'selected' : selectedItem === 'work'}"
+      (click)="selectItem('work')"
+      >
         <ion-icon name="briefcase-outline" slot="start"></ion-icon>
         <ion-label>Work</ion-label>
       </ion-item>
 
-      <ion-item button detail="false" lines="none" class="keep-item">
+      <ion-item button detail="false" 
+      lines="none" 
+      class="keep-item"
+      [ngClass]="{ 'selected' : selectedItem === 'create'}"
+      (click)="selectItem('create')"
+      >
         <ion-icon name="create-outline" slot="start"></ion-icon>
         <ion-label>Create/Edit labels</ion-label>
       </ion-item>
 
-      <!-- Divider -->
       <div class="divider"></div>
 
-      <!-- Archive & Trash -->
-      <ion-item button detail="false" lines="none" class="keep-item">
+      <ion-item button detail="false" 
+      lines="none" 
+      class="keep-item"
+      [ngClass]="{ 'selected' : selectedItem === 'archive'}"
+      (click)="selectItem('archive')"
+      >
         <ion-icon name="archive-outline" slot="start"></ion-icon>
         <ion-label>Archive</ion-label>
       </ion-item>
 
-      <ion-item button detail="false" lines="none" class="keep-item">
+      <ion-item button detail="false" 
+      lines="none" 
+      class="keep-item"
+      [ngClass]="{ 'selected' : selectedItem === 'trash'}"
+      (click)="selectItem('trash')"     
+      >
         <ion-icon name="trash-outline" slot="start"></ion-icon>
         <ion-label>Trash</ion-label>
       </ion-item>
 
-      <!-- Divider -->
       <div class="divider"></div>
 
-      <!-- Settings -->
-      <ion-item button detail="false" lines="none" class="keep-item">
+      <ion-item button detail="false" 
+      lines="none" 
+      class="keep-item"
+      [ngClass]="{ 'selected' : selectedItem === 'settings'}"
+      (click)="selectItem('settings')"
+      >
         <ion-icon name="settings-outline" slot="start"></ion-icon>
         <ion-label>Settings</ion-label>
       </ion-item>
@@ -99,7 +118,7 @@
             type="text"
             class="keep-input"
             placeholder="Search your notes"
-            readonly
+
           />
           <ion-icon
             [name]="isGrid ? 'apps-outline' : 'reorder-three-outline'"
@@ -154,10 +173,38 @@
       </div>
       
     </div>
-    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-      <ion-fab-button>
-        <ion-icon name="add"></ion-icon>
-      </ion-fab-button>
-    </ion-fab>
-  </ion-content>
+
+<div class="fab-container" [class.fab-active]="fabExpanded">
+  <div class="fab-overlay" (click)="toggleFab()"></div>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button class="main-fab" [class.fab-expanded]="fabExpanded" (click)="toggleFab()">
+      <ion-icon [name]="fabExpanded ? 'close' : 'add'"></ion-icon>
+    </ion-fab-button>
+
+    <div class="fab-options" *ngIf="fabExpanded">
+      <div class="fab-option" (click)="createNote('audio')">
+        <ion-icon name="mic-outline"></ion-icon>
+        <span>Audio</span>
+      </div>
+      <div class="fab-option" (click)="createNote('image')">
+        <ion-icon name="image-outline"></ion-icon>
+        <span>Image</span>
+      </div>
+      <div class="fab-option" (click)="createNote('drawing')">
+        <ion-icon name="brush-outline"></ion-icon>
+        <span>Drawing</span>
+      </div>
+      <div class="fab-option" (click)="createNote('list')">
+        <ion-icon name="checkbox-outline"></ion-icon>
+        <span>List</span>
+      </div>
+      <div class="fab-option" (click)="createNote('text')">
+        <ion-icon name="text-outline"></ion-icon>
+        <span>Text</span>
+      </div>
+    </div>
+  </ion-fab>
 </div>
+  </ion-content>
+</div>  

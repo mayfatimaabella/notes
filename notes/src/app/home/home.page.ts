@@ -11,6 +11,7 @@ export class HomePage {
   searchText = '';
   isGrid = true;
   selectedItem: string = 'notes';
+  fabExpanded = false;
 
   constructor(private menu: MenuController) {}
 
@@ -37,4 +38,12 @@ export class HomePage {
   selectItem(item:string){
     this.selectedItem = item;
   }
+  toggleFab() {
+  this.fabExpanded = !this.fabExpanded;
+}
+
+createNote(type: string) {
+  console.log('Create note:', type);
+  this.fabExpanded = false;
+}
 }
