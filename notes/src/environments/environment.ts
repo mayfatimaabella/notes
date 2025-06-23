@@ -4,7 +4,14 @@
 
 export const environment = {
   production: false,
-  
+  firebaseConfig: {
+    apiKey: "AIzaSyBeOJyUDe7KRC-8HffqzOXFxFk5Ca6Ql3Y",
+    authDomain: "pat-pat-pat.firebaseapp.com",
+    projectId: "pat-pat-pat",
+    storageBucket: "pat-pat-pat.firebasestorage.app",
+    messagingSenderId: "594997805314",
+    appId: "1:594997805314:web:135ed109205561a499c21b"
+  }
 };
 
 /*
