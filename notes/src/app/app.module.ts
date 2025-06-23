@@ -13,10 +13,12 @@ import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 
 import { environment } from '../environments/environment';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { NoteModalComponent } from './note-modal/note-modal.component';
 
 @NgModule({
-  declarations: [AppComponent],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,FormsModule],
+  declarations: [AppComponent, NoteModalComponent],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,FormsModule, CommonModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideAuth(() => getAuth()),

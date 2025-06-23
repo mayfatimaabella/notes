@@ -1,10 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 
+
 @Component({
   selector: 'app-note-modal',
   templateUrl: './note-modal.component.html',
   styleUrls: ['./note-modal.component.scss'],
+  standalone: false
 })
 export class NoteModalComponent  implements OnInit {
 
