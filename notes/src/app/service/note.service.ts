@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Firestore, collection, addDoc, collectionData } from '@angular/fire/firestore';
+import { Firestore, collection, addDoc, collectionData, doc, updateDoc, deleteDoc } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
 export interface Note {
@@ -22,6 +22,16 @@ export class NoteService {
       return addDoc(notesRef, note);
     }
    
+    updateNote(note: Note) {
+      if (!note.id) throw new Error('Note id is required');
+      const noteRef = doc(this.firestore, 'notes', note.id);
+      return updateDoc(noteRef, { ...note });
+    }
+
+    deleteNote(noteId: string) {
+      const noteRef = doc(this.firestore, 'notes', noteId);
+      return deleteDoc(noteRef);
+    }
 
    getNotes(): Observable<Note[]> {
     const notesRef = collection(this.firestore, 'notes');

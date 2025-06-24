@@ -117,16 +117,26 @@
           <input
             type="text"
             class="keep-input"
-            placeholder="Search your notes"
+            placeholder="Search your notes"/>
 
-          />
           <ion-icon
             [name]="isGrid ? 'apps-outline' : 'reorder-three-outline'"
             class="keep-icon"
-            (click)="onGridClick()"
-          ></ion-icon>
-          <img src="https://ionicframework.com/docs/img/demos/avatar.svg" class="keep-avatar" />
+            (click)="onGridClick()"></ion-icon>
+
+          <ion-popover trigger="avatar-popover-trigger" [isOpen]="popoverOpen" (didDismiss)="popoverOpen = false">
+  <ng-template>
+    <ion-list>
+      <ion-item button details="false" lines="none" (click)="logout()">
+        <ion-icon name="log-out-outline" slot="start"></ion-icon>
+        <ion-label>Logout</ion-label>
+      </ion-item>
+    </ion-list>
+  </ng-template>
+</ion-popover>
+<img src="https://ionicframework.com/docs/img/demos/avatar.svg" class="keep-avatar" id="avatar-popover-trigger" (click)="popoverOpen = true" />
         </div>
+        
       </ion-card>
     </ion-toolbar>
   </ion-header>
@@ -137,41 +147,11 @@
       <span class="keep-pinned-label">PINNED</span>
     </div>
     <div class="keep-notes-grid">
-      <div class="note blue">
-        <div class="note-title">Material Design</div>
-        <div class="note-content">
-          Material design is a foundation upon which applications for Google
-          platforms are built. These principles are intended for a wide audience.
-        </div>
+      <div *ngFor="let note of notes" class="note" [ngClass]="note.type" (click)="openEditNoteModal(note)">
+        <div class="note-title">{{ note.title }}</div>
+        <div class="note-content">{{ note.content }}</div>
+        <div class="note-meta">{{ note.createdAt | date:'short' }}</div>
       </div>
-      <div class="note image">
-        <img src="assets/dog.jpg" alt="Dog" />
-      </div>
-      <div class="note red">
-        1175 Borregas Ave<br />Sunnyvale, CA 94089
-      </div>
-      <div class="note yellow">
-        <div class="note-title">Shopping list</div>
-        <ul class="note-list">
-          <li><input type="checkbox" /> Paper towels</li>
-          <li><input type="checkbox" /> Skim milk</li>
-          <li><input type="checkbox" /> Eggs</li>
-          <li><input type="checkbox" /> French bread</li>
-          <li><input type="checkbox" /> Tomato sauce</li>
-          <li><input type="checkbox" /> Cilantro</li>
-          <li><input type="checkbox" /> Onions</li>
-          <li><input type="checkbox" /> Peppers</li>
-          <li><input type="checkbox" /> Chicken</li>
-        </ul>
-      </div>
-      <div class="note white">
-        <div class="note-title">Drawing by Rocky</div>
-        <img src="assets/penguin.png" alt="Penguin" class="note-img" />
-      </div>
-      <div class="note orange">
-        <div class="note-title">Surprise party for Rocky!</div>
-      </div>
-      
     </div>
 
 <div class="fab-container" [class.fab-active]="fabExpanded">
@@ -207,4 +187,4 @@
   </ion-fab>
 </div>
   </ion-content>
-</div>  
+</div>

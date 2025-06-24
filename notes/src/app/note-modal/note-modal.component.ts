@@ -11,6 +11,7 @@ import { ModalController } from '@ionic/angular';
 export class NoteModalComponent  implements OnInit {
 
   @Input() type!: string;
+  @Input() id?: string;
 
   title: string = '';
   content: string = '';
@@ -34,5 +35,9 @@ export class NoteModalComponent  implements OnInit {
   cancel(){
     this.modalCtrl.dismiss();
 
+  }
+
+  deleteNote() {
+    this.modalCtrl.dismiss({ delete: true });
   }
 }

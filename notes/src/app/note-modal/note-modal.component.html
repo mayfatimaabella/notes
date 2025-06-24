@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Add {{ type | titlecase }} Note</ion-title>
+    <ion-title>{{ title ? 'Edit' : 'Add' }} {{ type | titlecase }} Note</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="cancel()">Cancel</ion-button>
     </ion-buttons>
@@ -19,4 +19,5 @@
   </ion-item>
 
   <ion-button expand="block" (click)="save()" [disabled]="!title || !content">Save</ion-button>
+  <ion-button expand="block" color="danger" *ngIf="title" (click)="deleteNote()">Delete</ion-button>
 </ion-content>
