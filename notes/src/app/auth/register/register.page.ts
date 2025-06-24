@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
   standalone: false,
 })
 export class RegisterPage implements OnInit {
+  name: string = '';
   email: string = '';
   password: string = '';
   confirmPassword: string = '';
@@ -23,7 +24,7 @@ export class RegisterPage implements OnInit {
       return;
     }
     try {
-      const userCredential = await this.authService.register(this.email, this.password);
+      const userCredential = await this.authService.register(this.name, this.email, this.password);
       alert('Registration successful!');
       this.router.navigate(['/login']);
     } catch (error: any) {
